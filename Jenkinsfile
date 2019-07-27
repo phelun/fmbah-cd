@@ -10,6 +10,49 @@ node('misc') {
     stage("Repo Pull") {
         checkout scm 
     }
+
+    echo "${seperator60}\n${seperator20} Check AWS connection \n${seperator60}"
+    stage("AWS") {
+        check_aws_connection()     
+    }
+}
+
+
+
+// CUSTOM DSL METHODS
+def setup_k8s_kube() {
+    stage('Prep k8s'){
+      withCredentials([usernamePassword(credentialsId: 'cicd-token', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
+        sh """
+           ls -l
+           aws sts get-caller-identity
+           aws eks update-kubeconfig --name fmbah01 --region eu-west-1
+           kubectl get nodes
+           kubectl get ns
+           helm init
+           helm version
+           helm ls
+           helm install helm/wordpress
+
+           # kubectl create serviceaccount --namespace kube-system tiller
+           # kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+           # kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+           # helm init --service-account tiller --upgrade
+           # sleep 30
+           # helm version
+        """
+      }
+    }
+}
+
+def check_aws_connection() {
+    stage('AWS Creds'){
+      withCredentials([usernamePassword(credentialsId: 'cicd-token', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
+        sh """
+           aws ec2 describe-instances --region eu-west-1
+        """
+      }
+    }
 }
 
 
