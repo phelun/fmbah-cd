@@ -10,5 +10,6 @@ F. Mbah
 ## To Do: 
     - Add relevant credential holders -- Done 
     - Add a job-link that calls deployer job 
-    - 
+    - Semantic Versioning
+    - Deploy Notifications
 
