@@ -8,5 +8,7 @@ F. Mbah
     - Deploy to final target environment 
 
 ## To Do: 
-
+    - Add relevant credential holders 
+    - Add a job-link that calls deployer job 
+    - 
 
