@@ -7,7 +7,7 @@ def seperator20 = '\u2739' * 20
 
 node('misc') {
     echo "${seperator60}\n${seperator20} Clone repo to workspace \n${seperator60}"
-    stage(deployer) {
+    stage("Repo Pull") {
         checkout scm 
     }
 }
