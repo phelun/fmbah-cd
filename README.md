@@ -1,5 +1,5 @@
 Repo Author: 
-F. Mbah 
+F.Mbah 
 
 ## Repo Purpose: 
     - This simple repo will pull artifacts(zip/image/jar/tar.gz) from artifactory/ecs/docker reg.
