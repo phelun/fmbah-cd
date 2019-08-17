@@ -16,10 +16,8 @@ node('misc') {
         check_aws_connection()     
     } 
     
-    echo "${seperator60}\n${seperator20} Patch and setup kubeconfig \n${seperator60}"
-    stage("EKS") {
-        setup_k8s_kube()     
-    } 
+    echo "${seperator60}\n${seperator20} Configure kubeconfig \n${seperator60}"
+    setup_k8s_kube()     
 
 }
 
