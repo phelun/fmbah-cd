@@ -22,7 +22,9 @@ node('misc') {
     
     echo "${seperator60}\n${seperator20} Deploy Charts \n${seperator60}"
     stage("Deploy to prod"){
+      withCredentials([usernamePassword(credentialsId: 'cicd-token', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
         sh "helm install --name release_1.0 s3://vps-state/cutom-helm-charts/wordpress_7.tar.gz"
+      }  
     }
 
 
