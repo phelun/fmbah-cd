@@ -24,7 +24,7 @@ node('misc') {
     stage("Deploy to prod"){
       withCredentials([usernamePassword(credentialsId: 'cicd-token', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
         sh "aws s3 cp s3://vpc-states/custom-helm-charts/wordpress_7.tar.gz ." 
-        sh "helm install --name release-v1 wordpress_7.tar.gz"
+        sh "helm install --name releaseword wordpress_7.tar.gz"
       }  
     }
 
