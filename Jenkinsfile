@@ -23,7 +23,7 @@ node('misc') {
     echo "${seperator60}\n${seperator20} Deploy Charts \n${seperator60}"
     stage("Deploy to prod"){
       withCredentials([usernamePassword(credentialsId: 'cicd-token', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID' )]){
-        sh "aws s3 cp s3://vpc-states/custom-helm-charts/wordpress_8.tar.gz ." 
+        sh "aws s3 cp s3://vpc-states/custom-helm-charts/wordpress_10.tar.gz ." 
         sh "helm upgrade --install releasev1 wordpress_8.tar.gz"
       }  
     }
